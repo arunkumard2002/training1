@@ -1,8 +1,8 @@
-/* *{
+*{
     font-size: 16px;
     margin: 0;
     padding: 0;
-} */
+}
 
 ul{
     margin: 0 auto;
@@ -33,3 +33,22 @@ table tr:nth-child(odd){
 form fieldset label {
     margin-bottom: 5px;
 }
+
+p{
+    padding: 16px;
+    border: 2px dotted black;
+    margin: 16px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    background-color: cornflowerblue;
+    height: 50px;
+    min-height: 100px;
+    max-height: 30px;
+    width: 960px;
+    min-width: 960px;
+    max-width: 960px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}   

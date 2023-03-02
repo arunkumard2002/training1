@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- <form action="/users" method="get" enctype="multipart/form-data"> -->
+        <!-- <form action="/users" method="get" enctype="text/plain"> -->
+        <form action="/users" method="get" enctype="application/x-www-form-urlencoded">
+            <!-- plain text will takes the values as string data -->
+            <!--  -->
+            <fieldset>
+                <legend>Login Form</legend>
+                <label for="username">User Name</label>
+                <input type="text" name="" id="username" value="">
+                <input type="button" id="validateUser" value="Validat">
+                <label for="password">Password</label>
+                <input type="password" name="" id="password" min="3" max="10" minlength="3" maxlength="10" rquired>
+                <input type="submit" value="Submit">
+                <label for="check1">Checkbox1</label>
+                <input disabled type="checkbox" name="check1" id="check1">
+                <br />
+                <label for="check2">Accepted Terms and Conditions</label>
+                <input type="checkbox" name="check2" id="check2">
+                <br>
+                <fieldset>
+                    <legend>Gender</legend>
+                    <label for="Male">Male</label>
+                    <input type="radio" value="Male" name="gender" id="Male">
+                    <label for="Female">Female</label>
+                    <input type="radio" value="Female" name="gender" id="Female">
+                </fieldset>
+                <input type="date" name="" id="">
+                <input type="datetime-local" name="" id="">
+                <input type="email" name="" id="">
+                <input type="hidden" name="" value="lgoi">
+                <input type="range" name="" id="" step="9">
+                <input type="week" name="" id="">
+            </fieldset>
+            <fieldset>
+                <legend>Select Tags</legend>
+                <select name="class" id="bagSelection">
+                    <option value="">Select Bags</option>
+                    <option value="bags">Bag</option>
+                    <option value="briefcase">BriefCase</option>
+                </select>
+                <select name="" id="">
+                    <option value="">Select..</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                </select>
+
+                <input type="text" value="">
+                <input type="file" name="" id="" multiple accept=".txt">
+                <button>Submit</button>
+                <input type="button" value="Submit" formnovalidate>
+                <br>
+                <label for="txtarea">FeedBack</label>
+                <textarea name="" id="txtarea" cols="30" rows="2"></textarea>
+            </fieldset>
+            
+            <figure>
+                <img src="images/water.jpg" width="200" height="200" alt="Water Image" title="Water Image">
+                <figcaption>This is the imagw</figcaption>
+            </figure>
+        </form>
+        <nav>
+            <a href="https://www.google.com" target="_top">Google</a>
+        </nav>
+        <!-- <script src="" async defer></script> -->
+    </body>
+</html>
