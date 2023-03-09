@@ -1,0 +1,101 @@
+*{
+    font-size: 16px;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    margin: 0 auto;
+    text-align: center;
+}
+
+ul li{
+    display: inline-block;
+    width: 100px;
+}
+
+ul li a{
+    text-decoration: none;
+}
+
+table th, table td{
+    padding: 0;
+    margin: 0;
+    border: 1px solid;
+}
+table tr:nth-child(even){
+    background-color: #ddd !important;
+}
+table tr:nth-child(odd){
+    background-color: lightblue !important;
+}
+
+form fieldset label {
+    margin-bottom: 5px;
+}
+
+p{
+    padding: 16px;
+    border: 2px dotted black;
+    margin: 16px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    width: 960px;
+    min-width: 960px;
+    max-width: 960px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    margin-top: 100px;
+}
+
+p{
+    /* font-weight: 900; */
+    /* text-indent: 50px; */
+    /* word-spacing: 5px; */
+    line-height: 32px;
+    /* float: left; */
+    /* width: 200px; */
+    /* min-width: 200px; */
+    /* max-width: 200px; */
+
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    background-color: white;
+}
+/* p#p1{
+    float: none;
+} */
+a{
+    text-decoration: none;
+}
+
+/*selector: pseudo class*/
+a:hover{
+    color: red;
+    padding: 10px;
+}
+a:link{
+    color: green;
+}
+a:active{
+    color: black;
+}
+input:disabled{
+    background-color: #ddd;
+    border: 1px solid black
+}
+input{
+    padding: 5px;
+    border-color: red;
+    border-width: 1px;
+    border-style: dashed;
+    border: 2px blue dotted;
+}
