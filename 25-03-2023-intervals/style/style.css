@@ -1,0 +1,7 @@
+.form-container{
+    max-width: 500px;
+    margin: 0 auto;
+}
+.form-container .row{
+    margin-top: 10px;
+}
