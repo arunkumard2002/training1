@@ -1,8 +1,8 @@
-<div class="bd-example-snippet bd-code-snippet">
+<!-- <div class="bd-example-snippet bd-code-snippet">
   <div class="bd-example">
     <form name="signUp" #signInForm="ngForm" (ngSubmit)="submitForm(signInForm)">
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"><i class="fa fa-user"></i> Email address</label>
+        <label for="exampleInputEmail1" class="form-label"><i class="fa fa-user signUpIcon"></i> Email address</label>
         <input
           type="email"
           name="userEmail"
@@ -11,6 +11,8 @@
           aria-describedby="emailHelp"
           placeholder="Please enter email address"
           [(ngModel)]="userModel.username"
+          pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+          required
         />
         
         <div id="emailHelp" class="form-text">
@@ -35,7 +37,87 @@
       <button type="submit" class="btn btn-primary" [disabled]="!signInForm.value.checkmeout">Submit</button>
       <br>
       {{signInForm.valid}}
+      <br>
       {{signInForm.value | json}}
+      errors
+      {{signInForm.errors | json}}
+    </form>
+  </div>
+</div> -->
+<div class="bd-example-snippet bd-code-snippet">
+  <div class="bd-example">
+    <form id="signUpForm" [formGroup]="signInForm" name="signUp"
+      (ngSubmit)="submitForm(signInForm)"
+    >
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label"
+          ><i class="fa fa-user signUpIcon"></i> Email address</label
+        >
+        <input
+          type="email"
+          name="userEmail"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Please enter email address"
+          required
+          formControlName="userEmail"
+        />
+
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label"
+          ><i class="fa fa-lock"></i> Password</label
+        >
+        <input
+          type="password"
+          name="userPassword"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Please enter password"
+          formControlName="userPassword"
+        />
+      </div>
+      <div class="mb-3 form-check">
+        <input
+          name="checkmeout"
+          formControlName="checkMeOut"
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck1"
+        />
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!signInForm.valid"
+      >
+        Submit
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="resetForm()"
+      >
+        Reset
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="setFormData()"
+      >
+        Fill Data
+      </button>
+      <br />
+      {{ signInForm.valid }}
+      <br />
+      {{ signInForm.value | json }}
+      errors
+      {{ signInForm.errors | json }}
     </form>
   </div>
 </div>

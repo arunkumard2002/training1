@@ -1,23 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  // @ViewChild('signInForm') signInForm: Form | undefined;
   userEmail: string = '';
   userPassword: string = '';
   public userModel: User = new User();
-  constructor(){}
+  public signInForm: FormGroup;
+
+  constructor(private fb: FormBuilder){
+    this.signInForm = this.fb.group({
+      userEmail:  new FormControl('', [Validators.required, Validators.email]),
+      userPassword: new FormControl(''),
+      checkMeOut: new FormControl(false),
+      address: new FormGroup({
+        street: new FormControl(''),
+        landMark: new FormControl('')
+      })
+    })
+  }
+ 
   ngOnInit(): void {
     debugger;
     console.log(this.userModel);
+    console.log(this.signInForm);
   }
   submitForm(event: any) {
     debugger;
     console.log(event);
     console.log(this.userModel);
+    console.log(this.signInForm.value);
+  }
+  resetForm() {
+    this.signInForm.reset();
+  }
+  ngAfterViewInit(){
+    console.log(this.signInForm);
+  }
+
+  setFormData() {
+    // this.signInForm.patchValue({
+    //   userEmail: 'karthik@gmail.com',
+    //   userPassword: 'karthik@123',
+    //   checkMeOut: true
+    // })
+    this.signInForm.setValue({
+      userEmail: 'karthik@gmail.com',
+      userPassword: 'karthik@123',
+      checkMeOut: true,
+      address: {
+        street: '',
+        landMark: ''
+      }
+    })
+  }
+
+  fieldIsFocused(event:any) {
+    debugger;
+    console.log(event);
   }
 }
 

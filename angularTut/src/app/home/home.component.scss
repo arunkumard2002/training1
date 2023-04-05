@@ -4,3 +4,9 @@
     margin: 1%;
     border-radius: 10px;
 }
+
+#signUpForm{
+    .ng-invalid.ng-dirty{
+        border-color: red;
+    }
+}
