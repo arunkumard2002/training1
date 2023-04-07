@@ -1,0 +1,119 @@
+<div class="bd-example-snippet bd-code-snippet">
+  <div class="bd-example">
+    <form
+      id="employeeForm"
+      [formGroup]="employeeForm"
+      name="signUp"
+      (ngSubmit)="submitForm(employeeForm)"
+    >
+      <div class="mb-3">
+        <label for="employeeName" class="form-label"
+          ><i class="fa fa-user signUpIcon"></i> Employee Name</label
+        >
+        <input
+          type="text"
+          name="employeeName"
+          class="form-control"
+          id="employeeName"
+          aria-describedby="employeeName"
+          placeholder="Please enter name"
+          required
+          formControlName="employeeName"
+        />
+
+        <div id="employeeName" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="employeeAge" class="form-label"
+          ><i class="fa fa-user signUpIcon"></i> Employee Age</label
+        >
+        <input
+          type="number"
+          name="employeeAge"
+          class="form-control"
+          id="employeeAge"
+          aria-describedby="employeeAge"
+          placeholder="Please enter age number"
+          required
+          formControlName="employeeAge"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="employeeSalary" class="form-label"
+          ><i class="fa fa-user signUpIcon"></i> Employee Salary</label
+        >
+        <input
+          type="number"
+          name="employeeSalary"
+          class="form-control"
+          id="employeeSalary"
+          aria-describedby="employeeSalary"
+          placeholder="Please enter salary"
+          required
+          formControlName="employeeSalary"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!employeeForm.valid"
+      >
+        Submit
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">
+        Reset
+      </button>
+      <button type="button" class="btn btn-primary" (click)="setFormData()">
+        Fill Data
+      </button>
+      <br />
+      {{ employeeForm.valid }}
+      <br />
+      {{ employeeForm.value | json }}
+      errors
+      {{ employeeForm.errors | json }}
+    </form>
+  </div>
+</div>
+<strong appBgcolor> {{myDate | date: 'dd/mm/yyyy h:m:s'}}</strong>
+<div id="createEmployeeContainer">
+  <button type="button" class="btn btn-primary" (click)="createEmployee()">
+    {{'Create Employee' | uppercase}}
+  </button>
+</div>
+
+<div id="employeeList">
+  <div *ngIf="errorFlag; else templateName">
+    {{ employeeError }}
+  </div>
+  <ng-template #templateName>
+    <table aria-describedby="arun" class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Salary</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let employee of employeeList">
+          <tr>
+            <th scope="row">{{ employee.id }}</th>
+            <td>{{ employee.employee_name }}</td>
+            <td>{{ employee.employee_age }}</td>
+            <td>{{ employee.employee_salary }}</td>
+            <td>{{ employee.profile_image }}</td>
+            <td><i class="fa fa-edit" (click)="editEmployee(employee)"></i></td>
+            <td><i class="fa fa-remove"></i></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </ng-template>
+</div>

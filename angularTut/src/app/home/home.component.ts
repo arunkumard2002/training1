@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmployeePayload } from 'employee';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     debugger;
     console.log(this.userModel);
     console.log(this.signInForm);
+    let emp: EmployeePayload = {
+      name: '',
+      salary: '',
+      age: ''
+    }
+    console.log(emp);
   }
   submitForm(event: any) {
     debugger;
