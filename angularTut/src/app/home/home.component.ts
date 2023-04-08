@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       age: ''
     }
     console.log(emp);
+    sessionStorage.setItem('isAdmin', 'true');
   }
   submitForm(event: any) {
     debugger;

@@ -10,6 +10,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeService } from './shared/employee.service';
 import { ColorPipe } from './shared/color.pipe';
 import { BgcolorDirective } from './shared/bgcolor.directive';
+import { PageaccessGuard } from './shared/guards/pageaccess.guard';
+import { RestrcitedComponent } from './restrcited/restrcited.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { BgcolorDirective } from './shared/bgcolor.directive';
     HomeComponent,
     EmployeeComponent,
     ColorPipe,
-    BgcolorDirective
+    BgcolorDirective,
+    RestrcitedComponent
   ],
   imports: [
     FormsModule,
@@ -26,7 +29,7 @@ import { BgcolorDirective } from './shared/bgcolor.directive';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [EmployeeService],
+  providers: [EmployeeService, PageaccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
