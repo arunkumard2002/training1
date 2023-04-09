@@ -1,0 +1,21 @@
+.bd-example-snippet{
+    border: 1px solid #ddd;
+    padding: 1.5%;
+    margin: 1%;
+    border-radius: 10px;
+}
+
+#employeeForm{
+    .ng-invalid.ng-dirty{
+        border-color: red;
+    }
+}
+
+#createEmployeeContainer, #employeeList{
+    padding: 1.5%;
+    margin: 1%;
+}
+
+#createEmployeeContainer{
+    text-align: right;
+}

@@ -1,93 +1,42 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { EmployeeDetail, EmployeePayload } from 'employee';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { EmployeeDetail } from 'employee';
 import { User } from '../home/home.component';
 import { EmployeeService } from '../shared/employee.service';
-import { interval } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription, filter, interval, map, take, takeUntil, tap } from 'rxjs';
+import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
 })
-export class EmployeeComponent implements OnInit, AfterViewInit {
-  // @ViewChild('signInForm') signInForm: Form | undefined;
+export class EmployeeComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('appEmp') appEmp!: EmployeeFormComponent;
   public userEmail: string = '';
   userPassword: string = '';
   public userModel: User = new User();
-  public employeeForm: FormGroup;
+
+  public myDate: Date = new Date();
   public employeeList: EmployeeDetail[] = [];
   public employeeError: string = '';
   public errorFlag: boolean = false;
-  public myDate: Date = new Date();
 
-  constructor(private fb: FormBuilder, private empService: EmployeeService) {
-    this.employeeForm = this.fb.group({
-      employeeId: new FormControl(''),
-      employeeName: new FormControl('', [Validators.required]),
-      employeeAge: new FormControl('', [Validators.required]),
-      employeeSalary: new FormControl('', [Validators.required]),
-    });
-  }
+  public empServiceSub: Subscription = new Subscription;
+
+  public $destory = new Subject()
+
+  constructor(private empService: EmployeeService) {}
 
   ngOnInit(): void {
-    debugger;
-    console.log(this.userModel);
-    let emp: EmployeePayload = {
-      name: '',
-      salary: '',
-      age: '',
-    };
-    console.log(emp);
-    this.getEmployeeList();
-    
+    this.getEmployeeList('');
     interval(1000).subscribe((timer) => {
       this.myDate = new Date();
-    })
-    // this.cdr.detectChanges();
-  }
-  submitForm(event: any) {
-    debugger;
-    console.log(event);
-    console.log(this.userModel);
-    console.log(this.employeeForm.value);
-    let savePayLoad: EmployeePayload = {
-      name: this.employeeForm.value.employeeName,
-      age: this.employeeForm.value.employeeAge,
-      salary: this.employeeForm.value.employeeSalary
-    };
-    this.empService.saveEmployeeRecord(savePayLoad).subscribe({
-      next: (response) => {
-        debugger;
-        this.getEmployeeList();
-      },
-      error: () => {},
-      complete: () => {}
     });
+  }
 
-  }
-  resetForm() {
-    this.employeeForm.reset();
-  }
   ngAfterViewInit() {
-    console.log(this.employeeForm);
-  }
-
-  setFormData() {
-    // this.employeeForm.patchValue({
-    //   userEmail: 'karthik@gmail.com',
-    //   userPassword: 'karthik@123',
-    //   checkMeOut: true
-    // })
-    this.employeeForm.setValue({
-      userEmail: 'karthik@gmail.com',
-      userPassword: 'karthik@123',
-      checkMeOut: true,
-      address: {
-        street: '',
-        landMark: '',
-      },
-    });
+    debugger;
+    console.log(this.appEmp);
   }
 
   fieldIsFocused(event: any) {
@@ -99,30 +48,47 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     // this.empService.saveEmployeeRecord()
   }
 
-  editEmployee(empDetail: EmployeeDetail) {
-    this.employeeForm.setValue({
-      employeeId: empDetail.id,
-      employeeName: empDetail.employee_name,
-      employeeAge: empDetail.employee_age,
-      employeeSalary: empDetail.employee_salary,
-    })
+  clearForm() {
+    debugger;
+    this.appEmp.resetForm();
   }
 
-  getEmployeeList() {
-    this.empService.getEmployeeList().subscribe({
-      next: (employeeResponse) => {
+  getEmployeeList(successResponse: any) {
+    debugger;
+    console.log(successResponse);
+    this.empServiceSub = this.empService
+      .getEmployeeList()
+      .pipe(takeUntil(this.$destory))
+      .pipe(map((employeeResponse) => {
         debugger;
-        console.log(employeeResponse);
-        this.employeeList = employeeResponse.data;
-        this.employeeError = '';
-        this.errorFlag = false;
-      },
-      error: (errorResponse) => {
-        debugger;
-        this.errorFlag = true;
-        this.employeeError = errorResponse.error.message;
-      },
-      complete() {},
-    });
+        console.log(employeeResponse.message)
+        return employeeResponse.data;
+      }))
+      .subscribe({
+        next: (response: any) => {
+          debugger;
+          this.employeeList = response;
+          this.employeeError = '';
+          this.errorFlag = false;
+        },
+        error: (errorResponse) => {
+          debugger;
+          this.errorFlag = true;
+          this.employeeError = errorResponse.error.message;
+        },
+        complete() {},
+      });
   }
+
+  editEmployee(empDetail: EmployeeDetail) {
+    debugger;
+    console.log(empDetail);
+  }
+
+  ngOnDestroy(): void {
+    debugger;
+    this.$destory.next(true);
+    this.empServiceSub.unsubscribe();
+  }
+  
 }

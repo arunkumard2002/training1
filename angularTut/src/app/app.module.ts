@@ -12,6 +12,7 @@ import { ColorPipe } from './shared/color.pipe';
 import { BgcolorDirective } from './shared/bgcolor.directive';
 import { PageaccessGuard } from './shared/guards/pageaccess.guard';
 import { RestrcitedComponent } from './restrcited/restrcited.component';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RestrcitedComponent } from './restrcited/restrcited.component';
     EmployeeComponent,
     ColorPipe,
     BgcolorDirective,
-    RestrcitedComponent
+    RestrcitedComponent,
+    EmployeeFormComponent
   ],
   imports: [
     FormsModule,
